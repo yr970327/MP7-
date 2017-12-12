@@ -1,0 +1,382 @@
+import java.util.Scanner;
+public class Convertor {
+public static void main(String[] args) {
+  // TODO Auto-generated method stub
+	String getCurrency1 = String.format("Please enter the currency's abbreviation you want to convert"
+			+ " (choose from CNY,USD,CAD, EUR,GBP and JPY):");
+    String getQuantity = String.format("Please enter how much you want to convert (a positive number):");
+    String getCurrency2 = String.format("Please enter the currency's abbreviation you want to convert to:");
+        
+    Scanner stdin = new Scanner(System.in);
+        
+    String inputa;
+    String outputb;
+    double inputvalue = 0;
+        
+    final String China = "CNY";
+    final String US = "USD";
+    final String Europe = "EUR";
+    	final String UK = "GBP";
+    	final String Canada = "CAD";
+    	final String Japan = "JPY";
+  
+    	// input currency1
+    System.out.println(getCurrency1);
+    inputa = stdin.nextLine();
+    inputa = inputa.toUpperCase();
+    while (!inputa.equals(China) && !inputa.equals(US) && !inputa.equals(Europe) && !inputa.equals(UK)
+        	&& !inputa.equals(Canada) && !inputa.equals(Japan)) {
+    		System.out.println("Invalid input. Please enter the correct currency (choose from CNY,USD,CAD, EUR,GBP and JPY)");
+    		inputa = stdin.nextLine();
+    		inputa = inputa.toUpperCase();
+    }
+        
+    //output currency2 
+    System.out.println(getCurrency2);
+    outputb = stdin.nextLine();  
+    outputb = outputb.toUpperCase();
+    while (outputb.equals(inputa) || (!outputb.equals(China) && !outputb.equals(US) && !outputb.equals(Europe) && !outputb.equals(UK)
+            && !outputb.equals(Canada) && !outputb.equals(Japan)) ) {
+    			System.out.println("Invalid input. Please enter the correct currency (choose from CNY,USD,CAD,EUR,GBP and JPY) ");
+    			outputb = stdin.nextLine();
+        		outputb = outputb.toUpperCase();
+    }
+       
+    // input quantity
+    System.out.println(getQuantity);
+    inputvalue = stdin.nextDouble();   
+    while(inputvalue <= 0) {
+        System.out.println("Invalid input. Please enter how much you want to convert (a positive number)");
+        	inputvalue = stdin.nextDouble();
+    }
+        
+    	//upper bound
+	double maxValue = 1.79769313486231570E+308;
+	
+	// six currency to gold price rate
+	final double CNYtoGold = 0.000121021;
+	final double USDtoGold = 0.000801027;
+	final double EURtoGold = 0.000942875;
+	final double GBPtoGold = 0.001072260;
+	final double CADtoGold = 0.000623741;
+	final double JPYtoGold = 0.000007061;
+	
+	// user input money amount
+	double result1 = 0;
+	double result2 = 0;
+		
+	// input CNY
+	if (inputa.equals(China) && outputb.equals(US)) {
+		result1 = inputvalue * CNYtoGold; 
+		result2 = result1 / USDtoGold;
+		if (result2 > maxValue) {
+			System.out.println("Oops! The value is too big to show.");
+		} else {
+			System.out.println("The amount entered equals " + result1 + " ounce gold");
+			System.out.println("The amount entered equals " + result2 + " US Dollars");
+			}
+	}
+	if (inputa.equals(China) && outputb.equals(Europe)) {
+		result1 = inputvalue * CNYtoGold;
+		result2 = result1 / EURtoGold;
+		if(result2 > maxValue) {
+			System.out.println("Oops! The value is too big to show.");
+		} else {
+			System.out.println("The amount entered equals " + result1 + " ounce gold");
+			System.out.println("The amount entered equals " + result2 + " Euro");
+			}
+	}
+	if (inputa.equals(China) && outputb.equals(Canada)) {
+		result1 = inputvalue * CNYtoGold;
+		result2 = result1/ CADtoGold;
+		if(result2 > maxValue) {
+			System.out.println("Oops! The value is too big to show.");
+		} else {
+			System.out.println("The amount entered equals " + result1 + " ounce gold");
+			System.out.println("The amount entered equals " + result2 + " Canadian Dollars");
+			}
+	}
+	if (inputa.equals(China) && outputb.equals(Japan)) {
+		result1 = inputvalue * CNYtoGold;
+		result2 = result1/ JPYtoGold;
+		if(result2 > maxValue) {
+			System.out.println("Oops! The value is too big to show.");
+		} else {
+			System.out.println("The amount entered equals " + result1 + " ounce gold");
+			System.out.println("The amount entered equals " + result2 + " Japanese Yuan");
+			}
+	}
+	if (inputa.equals(China) && outputb.equals(UK)) {
+		result1 = inputvalue * CNYtoGold;
+		result2 = result1 / GBPtoGold;
+		if(result2 > maxValue) {
+			System.out.println("Oops! The value is too big to show.");
+		} else {
+			System.out.println("The amount entered equals " + result1 + " ounce gold");
+			System.out.println("The amount entered equals " + result2 + " British Pound");
+			}
+	}
+	
+	//input USD
+	if (inputa.equals(US) && outputb.equals(China)) {
+		result1 = inputvalue * USDtoGold; 
+		result2 = result1 / CNYtoGold;
+		if(result2 > maxValue) {
+			System.out.println("Oops! The value is too big to show.");
+		} else {
+			System.out.println("The amount entered equals " + result1 + " ounce gold");
+			System.out.println("The amount entered equals " + result2 + " Chinese Yuan");
+			}
+	}
+	if (inputa.equals(US) && outputb.equals(Europe)) {
+		result1 = inputvalue * USDtoGold;
+		result2 = result1 / EURtoGold;
+		if(result2 > maxValue) {
+			System.out.println("Oops! The value is too big to show.");
+		} else {
+			System.out.println("The amount entered equals " + result1 + " ounce gold");
+			System.out.println("The amount entered equals " + result2 + " Euro");
+			}
+	}
+	if (inputa.equals(US) && outputb.equals(UK)) {
+		result1 = inputvalue * USDtoGold;
+		result2 = result1 / GBPtoGold;
+		if(result2 > maxValue) {
+			System.out.println("Oops! The value is too big to show.");
+		} else {
+			System.out.println("The amount entered equals " + result1 + " ounce gold");
+			System.out.println("The amount entered equals " + result2 + " British Pound");
+			}
+	}
+	if (inputa.equals(US) && outputb.equals(Canada)) {
+		result1 = inputvalue * USDtoGold;
+		result2 = result1 / CADtoGold;
+		if(result2 > maxValue) {
+			System.out.println("Oops! The value is too big to show.");
+		} else {
+			System.out.println("The amount entered equals " + result1 + " ounce gold");
+			System.out.println("The amount entered equals " + result2 + " Canadian Dollars");
+			}
+	}
+	if (inputa.equals(US) && outputb.equals(Japan)) {
+		result1 = inputvalue * USDtoGold;
+		result2 = result1 / JPYtoGold;
+		if(result2 > maxValue) {
+			System.out.println("Oops! The value is too big to show.");
+		} else {
+			System.out.println("The amount entered equals " + result1 + " ounce gold");
+			System.out.println("The amount entered equals " + result2 + " Japanese Yuan");
+			}
+	}
+	
+	//input EUR
+	if (inputa.equals(Europe) && outputb.equals(China)) {
+		result1 = inputvalue * EURtoGold;
+		result2 = result1 / CNYtoGold;
+		if(result2 > maxValue) {
+			System.out.println("Oops! The value is too big to show.");
+		} else {
+			System.out.println("The amount entered equals " + result1 + " ounce gold");
+			System.out.println("The amount entered equals " + result2 + " Chinese Yuan");
+			}
+	}
+	if (inputa.equals(Europe) && outputb.equals(US)) {
+		result1 = inputvalue * EURtoGold;
+		result2 = result1 / USDtoGold;
+		if(result2 > maxValue) {
+			System.out.println("Oops! The value is too big to show.");
+		} else {
+			System.out.println("The amount entered equals " + result1 + " ounce gold");
+			System.out.println("The amount entered equals " + result2 + " US Dollars");
+			}
+	}
+	if (inputa.equals(Europe) && outputb.equals(UK)) {
+		result1 = inputvalue * EURtoGold;
+		result2 = result1 / GBPtoGold;
+		if(result2 > maxValue) {
+			System.out.println("Oops! The value is too big to show.");
+		} else {
+			System.out.println("The amount entered equals " + result1 + " ounce gold");
+			System.out.println("The amount entered equals " + result2 + " British Pound");
+			}
+	}
+	if (inputa.equals(Europe) && outputb.equals(Canada)) {
+		result1 = inputvalue * EURtoGold;
+		result2 = result1 / CADtoGold;
+		if(result2 > maxValue) {
+			System.out.println("Oops! The value is too big to show.");
+		} else {
+			System.out.println("The amount entered equals " + result1 + " ounce gold");
+			System.out.println("The amount entered equals " + result2 + " Canadian Dollars");
+			}
+	}
+	if (inputa.equals(Europe) && outputb.equals(Japan)) {
+		result1 = inputvalue * EURtoGold;
+		result2 = result1 / JPYtoGold;
+		if(result2 > maxValue) {
+			System.out.println("Oops! The value is too big to show.");
+		} else {
+			System.out.println("The amount entered equals " + result1 + " ounce gold");
+			System.out.println("The amount entered equals " + result2 + " Japanese Yuan");
+			}
+	}
+	
+	// input GBP
+	if (inputa.equals(UK) && outputb.equals(China)) {
+		result1 = inputvalue * GBPtoGold;
+		result2 = result1 / CNYtoGold;
+		if(result2 > maxValue) {
+			System.out.println("Oops! The value is too big to show.");
+		} else {
+			System.out.println("The amount entered equals " + result1 + " ounce gold");
+			System.out.println("The amount entered equals " + result2 + " Chinese Yuan");
+			}
+	}
+	if (inputa.equals(UK) && outputb.equals(US)) {
+		result1 = inputvalue * GBPtoGold;
+		result2 = result1 / USDtoGold;
+		if(result2 > maxValue) {
+			System.out.println("Oops! The value is too big to show.");
+		} else {
+			System.out.println("The amount entered equals " + result1 + " ounce gold");
+			System.out.println("The amount entered equals " + result2 + " US Dollars");
+			}
+	}
+	if (inputa.equals(UK) && outputb.equals(Canada)) {
+		result1 = inputvalue * GBPtoGold;
+		result2 = result1 / CADtoGold;
+		if(result2 > maxValue) {
+			System.out.println("Oops! The value is too big to show.");
+		} else {
+			System.out.println("The amount entered equals " + result1 + " ounce gold");
+			System.out.println("The amount entered equals " + result2 + " Canadian Dollars");
+			}
+	}
+	if (inputa.equals(UK) && outputb.equals(Japan)) {
+		result1 = inputvalue * GBPtoGold;
+		result2 = result1 / JPYtoGold;
+		if(result2 > maxValue) {
+			System.out.println("Oops! The value is too big to show.");
+		} else {
+			System.out.println("The amount entered equals " + result1 + " ounce gold");
+			System.out.println("The amount entered equals " + result2 + " Japanese Yuan");
+			}
+	}
+	if (inputa.equals(UK) && outputb.equals(Europe)) {
+		result1 = inputvalue * GBPtoGold;
+		result2 = result1 / EURtoGold;
+		if(result2 > maxValue) {
+			System.out.println("Oops! The value is too big to show.");
+		} else {
+			System.out.println("The amount entered equals " + result1 + " ounce gold");
+			System.out.println("The amount entered equals " + result2 + " Euro");
+			}
+	}
+	
+	// input CAD
+	if (inputa.equals(Canada) && outputb.equals(China)) {
+		result1 = inputvalue * CADtoGold;
+		result2 = result1 / CNYtoGold;
+		if(result2 > maxValue) {
+			System.out.println("Oops! The value is too big to show.");
+		} else {
+			System.out.println("The amount entered equals " + result1 + " ounce gold");
+			System.out.println("The amount entered equals " + result2 + " Chinese Yuan");
+			}
+	}
+	if (inputa.equals(Canada) && outputb.equals(US)) {
+		result1 = inputvalue * CADtoGold;
+		result2 = result1 / USDtoGold;
+		if(result2 > maxValue) {
+			System.out.println("Oops! The value is too big to show.");
+		} else {
+			System.out.println("The amount entered equals " + result1 + " ounce gold");
+			System.out.println("The amount entered equals " + result2 + " US Dollars");
+			}
+	}
+	if (inputa.equals(Canada) && outputb.equals(Europe)) {
+		result1 = inputvalue * CADtoGold;
+		result2 = result1 / EURtoGold;
+		if(result2 > maxValue) {
+			System.out.println("Oops! The value is too big to show.");
+		} else {
+			System.out.println("The amount entered equals " + result1 + " ounce gold");
+			System.out.println("The amount entered equals " + result2 + " Euro");
+			}
+	}
+	if (inputa.equals(Canada) && outputb.equals(UK)) {
+		result1 = inputvalue * CADtoGold;
+		result2 = result1 / GBPtoGold;
+		if(result2 > maxValue) {
+			System.out.println("Oops! The value is too big to show.");
+		} else {
+			System.out.println("The amount entered equals " + result1 + " ounce gold");
+			System.out.println("The amount entered equals " + result2 + " British Pound");
+			}
+	}
+	if (inputa.equals(Canada) && outputb.equals(Japan)) {
+		result1 = inputvalue * CADtoGold;
+		result2 = result1 / JPYtoGold;
+		if(result2 > maxValue) {
+			System.out.println("Oops! The value is too big to show.");
+		} else {
+			System.out.println("The amount entered equals " + result1 + " ounce gold");
+			System.out.println("The amount entered equals " + result2 + " Japanese Yuan");
+			}
+	}
+	
+	// input JPY
+	if (inputa.equals(Japan) && outputb.equals(China)) {
+		result1 = inputvalue * JPYtoGold;
+		result2 = result1 / CNYtoGold;
+		if(result2 > maxValue) {
+			System.out.println("Oops! The value is too big to show.");
+		} else {
+			System.out.println("The amount entered equals " + result1 + " ounce gold");
+			System.out.println("The amount entered equals " + result2 + " Chinese Yuan");
+			}
+	}
+	if (inputa.equals(Japan) && outputb.equals(US)) {
+		result1 = inputvalue * JPYtoGold;
+		result2 = result1 / USDtoGold;
+		if(result2 > maxValue) {
+			System.out.println("Oops! The value is too big to show.");
+		} else {
+			System.out.println("The amount entered equals " + result1 + " ounce gold");
+			System.out.println("The amount entered equals " + result2 + " US Dollars");
+			}
+	}
+	if (inputa.equals(Japan) && outputb.equals(Europe)) {
+		result1 = inputvalue * JPYtoGold;
+		result2 = result1 / EURtoGold;
+		if(result2 > maxValue) {
+			System.out.println("Oops! The value is too big to show.");
+		} else {
+			System.out.println("The amount entered equals " + result1 + " ounce gold");
+			System.out.println("The amount entered equals " + result2 + " Euro");
+			}
+	}
+	if (inputa.equals(Japan) && outputb.equals(UK)) {
+		result1 = inputvalue * JPYtoGold;
+		result2 = result1 / GBPtoGold;
+		if(result2 > maxValue) {
+			System.out.println("Oops! The value is too big to show.");
+		} else {
+			System.out.println("The amount entered equals " + result1 + " ounce gold");
+			System.out.println("The amount entered equals " + result2 + " British Pound");
+			}
+	}
+	if (inputa.equals(Japan) && outputb.equals(Canada)) {
+		result1 = inputvalue * JPYtoGold;
+		result2 = result1 / CADtoGold;
+		if(result2 > maxValue) {
+			System.out.println("Oops! The value is too big to show.");
+		} else {
+			System.out.println("The amount entered equals " + result1 + " ounce gold");
+			System.out.println("The amount entered equals " + result2 + " Canadian Dollars");
+			}
+	}
+	
+	}
+}
+
